@@ -1,0 +1,17 @@
+{% load i18n wagtailcore_tags %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static '/css/welcome_page.css' %}">
+{% endblock extra_css %}
+
+<header class="header">
+    <h1>Header</h1>
+</header>
+<main class="main">
+    <h1>MAIN</h1>
+    {{ self.bannner_title }}
+</main>
+<footer class="footer" role="contentinfo">
+    <h1>FOOTER</h1>
+</footer>
