@@ -1,21 +1,22 @@
+
 {% extends "base.html" %}
 {% load static %}
-
-{% block body_class %}template-homepage{% endblock %}
+{% load i18n wagtailcore_tags wagtailimages_tags %}
 
 {% block extra_css %}
-
-{% comment %}
-Delete the line below if you're just getting started and want to remove the welcome screen!
-{% endcomment %}
-<link rel="stylesheet" href="{% static 'css/welcome_page.css' %}">
+    <link rel="stylesheet" href="{% static 'css/home_page.css' %}">
 {% endblock extra_css %}
+
 
 {% block content %}
 
-{% comment %}
-Delete the line below if you're just getting started and want to remove the welcome screen!
-{% endcomment %}
-{% include 'home/welcome_page.html' %}
+{% image self.banner_image fill-900x400 as img %}
 
-{% endblock content %}
+    <div style="background-image: url('{{img.url}}'); background-size: contain; background-repeat: no-repeat">
+        {{ self.banner_title }}
+        {{ self.banner_subtitle | richtext }}
+        {% if self.banner_cta %}
+            <button>Call to Action</button>
+        {% endif %}
+    </div>
+{% endblock %}

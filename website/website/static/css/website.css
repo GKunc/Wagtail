@@ -1,0 +1,58 @@
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    max-width: 960px;
+    min-height: 100vh;
+    margin: 0 auto;
+    padding: 0;
+    color: #444;
+    font-family: "Fira Sans",Arial,sans-serif;
+    line-height: 1.25;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 16px;
+    background-color: red;
+
+    .navigation {
+        display: flex;
+        gap: 16px;
+    }
+
+    .language {
+        cursor: pointer;
+        width: 32px; 
+        height: 22px; 
+        background-repeat: no-repeat !important; 
+        background-size: cover !important;
+    }
+
+    a {
+        text-decoration: none;
+        font-size: 24px;
+        color: #444;
+    }
+    
+}
+
+.main {
+    min-height: calc(100vh - 167px);
+    padding: 40px 16px;    
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 16px;
+    background-color: blue;
+}

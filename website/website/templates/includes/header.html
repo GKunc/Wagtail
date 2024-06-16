@@ -1,0 +1,41 @@
+{% load wagtailcore_tags navigation_tags %}
+{% load i18n wagtailcore_tags %}
+{% load menus_tags %}
+
+<header class="header">
+    {% get_current_language as LANGUAGE_CODE %}
+
+    <div class="navigation">
+        <!-- Polish menu -->
+        {% if LANGUAGE_CODE == 'pl' %}
+            {% get_menu "nawigacja" as navigation %}
+            
+            {% for item in navigation.menu_items.all %}
+                <a href="{{ item.link }}" {% if item.open_in_new_tab %} target="_blank"{% endif %}>{{ item.title }}</a>
+            {% endfor %}
+
+        <!-- English menu -->
+        {% else %}
+            {% get_menu "navigation" as navigation %}
+            
+            {% for item in navigation.menu_items.all %}
+                <a href="{{ item.link }}" {% if item.open_in_new_tab %} target="_blank"{% endif %}>{{ item.title }}</a>
+            {% endfor %}
+        {% endif %}
+    </div>
+
+    <div class="header-link">
+        {% if page %}
+            {% for translation in page.get_translations.live %}
+                {% get_language_info for translation.locale.language_code as lang %}
+                    {% if LANGUAGE_CODE == 'pl' %}
+                        <button class="language" style="background: url('/media/images/angielski.png');" onclick="location.href='{% pageurl translation %}'" rel="alternate" hreflang="{{ lang.code }}">
+                        </button>
+                    {% else %}
+                        <button class="language"  style="background: url('/media/images/polski.png');" onclick="location.href='{% pageurl translation %}'" rel="alternate" hreflang="{{ lang.code }}">
+                        </button>
+                    {% endif %}
+            {% endfor %}
+        {% endif %}
+    </div>
+</header>
