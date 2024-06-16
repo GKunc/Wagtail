@@ -58,7 +58,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.middleware.locale.LocaleMiddleware",
-    
+
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
 ]
 
@@ -118,13 +118,14 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = "pl"
+LANGUAGE_CODE = "pl-PL"
 
 TIME_ZONE = "UTC"
 
 WAGTAIL_I18N_ENABLED = True
 
 USE_I18N = True
+USE_L10N = True
 
 USE_TZ = True
 
