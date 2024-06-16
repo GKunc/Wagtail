@@ -1,17 +1,15 @@
-{% load i18n wagtailcore_tags %}
-{% load static %}
 
-{% block extra_css %}
-    <link rel="stylesheet" href="{% static '/css/welcome_page.css' %}">
-{% endblock extra_css %}
+{% load i18n wagtailcore_tags wagtailimages_tags %}
 
-<header class="header">
-    <h1>Header</h1>
-</header>
-<main class="main">
-    <h1>MAIN</h1>
-    {{ self.bannner_title }}
-</main>
-<footer class="footer" role="contentinfo">
-    <h1>FOOTER</h1>
-</footer>
+{% block content %}
+
+{% image self.banner_image fill-900x400 as img %}
+
+    <div style="background-image: url('{{img.url}}'); background-size: contain; background-repeat: no-repeat">
+        {{ self.banner_title }}
+        {{ self.banner_subtitle | richtext }}
+        {% if self.banner_cta %}
+            <button>Call to Action</button>
+        {% endif %}
+    </div>
+{% endblock %}
