@@ -9,8 +9,9 @@
 
 
 {% block content %}
-
-{% image self.banner_image fill-900x400 as img %}
+    {% get_current_language as LANGUAGE_CODE %}
+    {% get_language_info for LANGUAGE_CODE as lang %}
+    {% image self.banner_image fill-900x400 as img %}
 
     <div style="background-image: url('{{img.url}}'); background-size: contain; background-repeat: no-repeat">
         {{ self.banner_title }}
@@ -19,4 +20,25 @@
             <button>Call to Action</button>
         {% endif %}
     </div>
+
+    <hr>
+
+    {% for post in posts %}
+        {% if post.locale|lower == lang.name_local|lower %}
+            <div class="row mt-5 mb-5">
+                <div class="col-sm-3">
+                    {% image post.blog_image fill-250x250 as blog_img %}
+                    <a href="{{ post.url }}">
+                        <img src="{{ blog_img.url }}" alt="{{ blog_img.alt }}">
+                    </a>
+                </div>
+                <div class="col-sm-9">
+                    <a href="{{ post.url }}">
+                        <h2>{{ post.custom_title }}</h2>
+                        <a href="{{ post.url }}" class="btn btn-primary mt-4">Read More</a>
+                    </a>
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
 {% endblock %}
